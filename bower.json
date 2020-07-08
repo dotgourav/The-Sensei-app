@@ -1,0 +1,37 @@
+{
+  "name": "Sensei App",
+  "authors": [
+    "Gourav Chawla"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "popper.js": "^1.12.9",
+    "bootbox.js": "bootbox#^4.4.0",
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "Sortable": "sortablejs#^1.8.4",
+    "animate.css": "^3.5.2",
+    "chosen": "^1.8.3",
+    "bootstrap-multiselect": "^0.9.15",
+    "palette.js": "*",
+    "bootstrap-select": "^1.12.4",
+    "pretty-checkbox": "^3.0.3",
+    "chartjs-plugin-datalabels": "^0.3.0",
+    "chart.js": "chartjs#^2.7.2",
+    "moment": "^2.24.0",
+    "blockUI": "blockui#*"
+  }
+}

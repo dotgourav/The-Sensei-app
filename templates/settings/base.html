@@ -1,0 +1,52 @@
+{% extends 'base/header/without-search-bar.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/settings/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/projects/style.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid pl-4 pr-4" style="margin-top:20px">
+    <div class="row">
+      <div class="col-3">
+        <div class="settings-bar-container">
+          <h6 class="p-1 font-weight-bolder">Global Settings</h6>
+          <div class="divcentre no-pad">
+            <a {% url 'settings_personal' as settings_personal %} href="{{ settings_personal }}" class="settings-bar {% if request.META.PATH_INFO == settings_personal %}settings-bar-active{% else %}font-weight-light{% endif %}"><div class="col-12 bg-set">User Details</div></a>
+            <a {% url 'settings_company' as settings_company %} href="{{ settings_company }}" class="settings-bar {% if request.META.PATH_INFO == settings_company %}settings-bar-active{% else %}font-weight-light{% endif %}"><div class="col-12 bg-set">Company</div></a>
+            <a {% url 'settings_team' as settings_team %} href="{{ settings_team }}" class="settings-bar {% if request.META.PATH_INFO == settings_team %}settings-bar-active{% else %}font-weight-light{% endif %}"><div class="col-12 bg-set">Team</div></a>
+          </div>
+          <h6 class="p-1 mt-3 font-weight-bolder">Module Settings</h6>
+          <div class="divcentre no-pad">
+            <a {% url 'settings_pipeline' as settings_pipeline %} href="{{ settings_pipeline }}" class="settings-bar {% if request.META.PATH_INFO == settings_pipeline %}settings-bar-active{% else %}font-weight-light{% endif %}"><div class="col-12 bg-set">Sourcing Project Pipeline</div></a>
+            {% if user.is_company_admin %}
+              <a {% url 'contracts_settings' as contracts_settings %} href="{{ contracts_settings }}"
+                                                                      class="settings-bar {% if request.META.PATH_INFO == contracts_settings %}settings-bar-active{% else %}font-weight-light{% endif %}">
+                <div class="col-12 bg-set">Contract Management</div>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% block settings_content_column %}
+        <div class="col-9">
+          <div class="row">
+            <div id="settings-main" class="col-11 divcentre">
+
+              {% block settings_content %}
+              {% endblock %}
+
+            </div>
+          </div>
+        </div>
+      {% endblock %}
+
+    </div>
+
+
+  </div>
+{% endblock %}
+
+

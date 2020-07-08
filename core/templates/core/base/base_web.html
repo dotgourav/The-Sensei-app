@@ -1,0 +1,54 @@
+{% extends 'core/base/base.html' %}
+{% load static %}
+{% load extras %}
+
+{% block css_mid %}
+{% endblock %}
+
+{% block web_content %}
+
+  <nav class="navbar navbar-expand navbar-light bg-app-blue">
+
+    <!-- Needed for dropdown-menus -->
+    <div class="overlay" onclick="toggleOverlay();"></div>
+
+    <a class="ml-1 navbar-brand text-white" {% block home_url %}href="{% url 'index' %}"{% endblock %}>Sensei App</a>
+
+    {% if user.is_authenticated %}
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-flex">
+          {% if request.user.profile_picture_url %}
+            <img class="rounded-circle m-auto" src="{{ request.user.profile_picture_url }}"
+                 width="30" height="30">
+          {% else %}
+            <div style="width: 30px; height: 30px" class="mt-1">
+              {% get_initials_user_icon request.user "18" %}
+            </div>
+          {% endif %}
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="" data-toggle="dropdown">
+            <div class="d-inline-block settings-dropdown">{{ user.name }}</div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right mt-1">
+            <a class="dropdown-item" href="{% url 'settings_personal' %}">Settings</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+          </div>
+        </li>
+      </ul>
+    {% else %}
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-link">
+          <a href="{% url 'login' %}" class="btn btn-sm btn-outline-light">Log In</a>
+        </li>
+      </ul>
+    {% endif %}
+  </nav>
+
+  <div class="container-main">
+    {% block content %}
+    {% endblock %}
+  </div>
+{% endblock %}
+{% block top_level_scripts %}
+{% endblock %}

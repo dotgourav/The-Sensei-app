@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block head_title %}Sensei App{% endblock head_title %}</title>
+
+  <link rel="stylesheet" href="{% static 'css/multiselect/style.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/jquery-ui/themes/base/jquery-ui.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/animate.css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/chosen/chosen.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/bootstrap-multiselect/dist/css/bootstrap-multiselect.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/pretty-checkbox/dist/pretty-checkbox.min.css' %}">
+  <link rel="stylesheet" href="{% static 'external/noty/lib/noty.css' %}">
+  <link rel="stylesheet" href="{% static 'css/external/datatables/datatables.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/icons/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/external/choices-js/choices.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/extras/spinner.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  {% block css_mid %}{% endblock %}
+  {% block extra_css %}{% endblock extra_css %}
+</head>
+<body>
+
+{% block web_content %}
+{% endblock %}
+
+<!-- Bootstrap -->
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'bower_components/popper.js/dist/umd/popper.min.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'bower_components/bootbox.js/bootbox.js' %}"></script>
+<script src="{% static 'bower_components/blockUI/jquery.blockUI.js' %}"></script>
+<script src="{% static 'bower_components/Sortable/Sortable.min.js' %}"></script>
+<script src="{% static 'bower_components/chosen/chosen.jquery.min.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js' %}"></script>
+<script src="{% static 'bower_components/palette.js/palette.js' %}"></script>
+<script src="{% static 'external/noty/lib/noty.js' %}"></script>
+<script src="{% static 'js/external/datatables/datatables.min.js' %}"></script>
+
+<script src="{% static 'js/external/choices-js/choices.min.js' %}"></script>
+<script src="{% static 'js/global.js' %}"></script>
+<script src="{% static 'js/file-form-container.js' %}"></script>
+<script src="{% static 'js/on-document-ready.js' %}"></script>
+<script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+<script>
+  initTooltip();
+</script>
+
+{% block top_level_scripts %}{% endblock top_level_scripts %}
+{% block extra_scripts %}{% endblock extra_scripts %}
+
+</body>
+</html>

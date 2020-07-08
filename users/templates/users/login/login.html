@@ -1,0 +1,44 @@
+{% extends 'core/base/base_auth.html' %}
+
+{% block head_title %}{{ block.super }} - Login{% endblock %}
+
+{% block form %}
+  <form id="form-signin" autocomplete="off">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <input name="email" type="email" class="form-control" id="email" placeholder="name@domain.com" required>
+    </div>
+
+    <div class="form-group">
+      <input name="password" type="password" class="form-control" id="password" placeholder="password" required>
+    </div>
+
+    <input type="hidden" name="next" value="{{ next }}" />
+
+    <button class="btn btn-primary btn-block bg-app-blue" type="submit">Log in</button>
+  </form>
+{% endblock %}
+
+{% block form_outside %}
+{% endblock form_outside %}
+
+{% block extra_scripts %}
+  <script>
+    $('#form-signin').submit(function(event) {
+      event.preventDefault();
+      submitForm({
+        url: '{% url 'login_process' %}',
+        form_id: this.id,
+        on_success: function(response) {
+          console.log(response.next !== undefined);
+          if (response.next !== undefined) {
+            window.location.href = response.next;
+          } else {
+            window.location = '{% url 'index' %}';
+          }
+        }
+      });
+    });
+  </script>
+{% endblock %}

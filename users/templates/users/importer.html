@@ -1,0 +1,66 @@
+{% extends 'settings/base.html' %}
+{% load static %}
+
+
+{% block settings_content_column %}
+  <div class="col-9">
+    <div class="row">
+      <div id="settings-main" class="col-12 contracts">
+        <h4 style="padding: 0 0 5px 10px;">Sourcing Project Pipeline</h4>
+        <div class="contracts__body">
+          <ul class="nav nav-tabs" id="tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="sourcing-pipeline-tab" data-toggle="tab" href="#sourcing-pipeline" role="tab" aria-controls="sourcing-pipeline" aria-selected="true">Sourcing Project Pipeline</a>
+            </li>
+            {% if user.is_company_admin %}
+              <li class="nav-item">
+                <a class="nav-link" id="custom-fields-tab" data-toggle="tab" href="#custom-fields" role="tab" aria-controls="custom-fields" aria-selected="false">Custom Fields</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="workflows-list" data-toggle="tab" href="#workflows-tab" role="tab" aria-controls="workflow-list" aria-selected="false">Workflows Approvals</a>
+              </li>
+            {% endif %}
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            {% include 'settings/partials/sourcing-pipeline.html' %}
+            {% if user.is_company_admin %}
+              {% include 'settings/partials/custom-fields.html' %}
+              {% include 'settings/partials/workflow-list.html' %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/settings/approval-flows.js' %}"></script>
+  <script src="{% static 'js/projects-import-form.js' %}"></script>
+  <script>
+    $(function () {
+      {% if user.is_company_admin %}
+        initSourcingStepReorderable();
+      {% endif %}
+      $("#field_type").on('change', function (event) {
+        if($(event.target).val() === 'list') {
+          $("#list_values_block").show();
+        } else {
+          $("#list_values_block").hide();
+        }
+      })
+    })
+  </script>
+  <script>
+    // Keep selected tab on page refresh
+    $(document).ready(function() {
+      if (location.hash) {
+        $("a[href='" + location.hash + "']").tab("show");
+      }
+      $(document.body).on("click", "a[data-toggle='tab']", function(event) {
+        location.hash = this.getAttribute("href");
+      });
+    });
+  </script>
+{% endblock %}

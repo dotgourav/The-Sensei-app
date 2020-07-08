@@ -1,0 +1,15 @@
+{% extends 'core/base/base_web.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="card card-container" id="auth-card">
+      {% block form %}{% endblock form %}
+    </div>
+  </div>
+
+  {% block form_outside %}{% endblock form_outside %}
+
+  <div class="container text-center mt-5">
+    <p class="text-muted credit">&copy; {% now 'Y' %} - Sensei App</p>
+  </div>
+{% endblock %}
