@@ -26,7 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_registered = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['first_name']
 
     objects = UserManager()
 
@@ -41,3 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def name(self):
         return f'{self.first_name} {self.last_name}'.strip()
+
+    @property
+    def is_staff(self):
+        return self.is_superuser
