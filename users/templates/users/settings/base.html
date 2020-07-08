@@ -1,0 +1,41 @@
+{% extends 'core/base/header/without-search-bar.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/settings/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/projects/style.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid pl-4 pr-4" style="margin-top:20px">
+    <div class="row">
+      <div class="col-3">
+        <div class="settings-bar-container">
+          <h6 class="p-1 font-weight-bolder">Settings</h6>
+          <div class="divcentre no-pad">
+            <a {% url 'me' as me %} href="{{ me }}" class="settings-bar {% if request.META.PATH_INFO == me %}settings-bar-active{% else %}font-weight-light{% endif %}"><div class="col-12 bg-set">Profile</div></a>
+            <a {% url 'import_teachers' as import_teachers %} href="{{ import_teachers }}" class="settings-bar {% if request.META.PATH_INFO == import_teachers %}settings-bar-active{% else %}font-weight-light{% endif %}"><div class="col-12 bg-set">Import Teachers</div></a>
+          </div>
+        </div>
+      </div>
+
+      {% block settings_content_column %}
+        <div class="col-9">
+          <div class="row">
+            <div id="settings-main" class="col-11 divcentre">
+
+              {% block settings_content %}
+              {% endblock %}
+
+            </div>
+          </div>
+        </div>
+      {% endblock %}
+
+    </div>
+
+
+  </div>
+{% endblock %}
+
+

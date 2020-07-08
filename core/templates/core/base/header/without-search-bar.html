@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'core/base/base.html' %}
 {% load static %}
 {% load extras %}
 
@@ -9,57 +9,13 @@
         <!-- Needed for dropdown-menus -->
         <div class="overlay" onclick="toggleOverlay();"></div>
 
-        <a class="ml-1 navbar-brand" {% block home_url %}href="{% url 'index' %}"{% endblock %}>
-            <img src="{% static 'images/sourceforce_logo_big.png' %}" height="42" width="130">
-        </a>
-        {% if user.company.logo %}
-            <a class="ml-2 mb-1 navbar-brand" href="{% url 'index' %}">
-                <img src="{{ user.company.logo.url }}" height="40" style="max-width: 130px;">
-            </a>
-        {% endif %}
+        <a class="ml-1 navbar-brand text-white" {% block home_url %}href="{% url 'index' %}"{% endblock %}>Sensei App</a>
 
         {% if user.is_authenticated %}
-{#            <form class="form-inline ml-2 mb-1 js-navbar__search" autocomplete="off">#}
-{#                <input class="form-control form-control-sm" type="search" placeholder="Search" name="q" value="{% if q %}{{ q }}{% endif %}">#}
-{#            </form>#}
-          {% selected_nav_item as selected_nav %}
-          {% if user.company.is_contracts_active and selected_nav %}
-            <div class="dropdown ml-auto" style="margin-right: 110px;">
-              <button type="button" class="dropdown-toggle btn btn-link text-light" style="text-decoration: none;" data-toggle="dropdown"><strong>{{ selected_nav }}</strong></button>
-              <div class="dropdown-menu dropdown-menu-center">
-                <a class="dropdown-item" href="{% url 'index' %}">Projects</a>
-                <a class="dropdown-item" href="{% url 'contracts:index' %}">Contracts</a>
-              </div>
-            </div>
-          {% endif %}
-
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-3" data-toggle="tooltip" title="Approval History">
-                  <a class="nav-link" href="{% url 'approvals:approval-history' %}">
-                    <i class="fa fa-history text-white" style="font-size: 20px; margin-top: 2px;"></i>
-                  </a>
-                </li>
-                <li class="nav-item mr-3" data-toggle="tooltip" title="Analytics">
-                    <a class="nav-link" href="{% url 'charts_summary' %}">
-                        <img src="{% static 'images/charts_icon.svg' %}" height="20">
-                    </a>
-                </li>
-                <li class="nav-item mr-3" data-toggle="tooltip" title="Notifications">
-                    <a id="notifications-popup-button" class="nav-link" href="javascript:void(0)"
-                       onclick="notificationsPopup();">
-                        <img src="{% static 'images/notifications_icon.svg' %}" height="20">
-                        <span class="badge badge-danger">{% if user.unread_notifications_count %}
-                            {{ user.unread_notifications_count }}{% else %}{% endif %}</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" id="notifications-popup-id"></div>
-                </li>
                 <li class="nav-item d-flex">
-{#                    <img class="rounded-circle m-auto" src="#}
-{#                            {% if request.user.profile_picture_url %}{{ request.user.profile_picture_url.url }}{% else %}{% static 'images/profile_placeholder_120x120.svg' %}{% endif %}"#}
-{#                         width="35" height="35">#}
                     {% if request.user.profile_picture_url %}
-                        <img class="rounded-circle m-auto" src="
-                                                {{ request.user.profile_picture_url }}"
+                        <img class="rounded-circle m-auto" src="{{ request.user.profile_picture_url }}"
                              width="30" height="30">
                     {% else %}
                         <div style="width: 30px; height: 30px" class="mt-1">
@@ -72,7 +28,7 @@
                         <div class="d-inline-block settings-dropdown">{{ user.name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right mt-1">
-                        <a class="dropdown-item" href="{% url 'settings_personal' %}">Settings</a>
+{#                        <a class="dropdown-item" href="{% url 'settings_personal' %}">Settings</a>#}
                         <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                     </div>
                 </li>
@@ -83,7 +39,7 @@
                     <a href="{% url 'login' %}" class="btn btn-sm btn-outline-light">Log In</a>
                 </li>
                 <li class="nav-link">
-                    <a href="{% url 'registration' %}" class="btn btn-sm btn-outline-light">Register</a>
+{#                    <a href="{% url 'registration' %}" class="btn btn-sm btn-outline-light">Register</a>#}
                 </li>
             </ul>
         {% endif %}

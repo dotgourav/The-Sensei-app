@@ -47,6 +47,14 @@ def signout(request):
 
 @require_safe
 @login_required()
-@render_to('settings/importer.html')
-def settings(request):
+@render_to('users/settings/importer.html')
+def import_teachers(request):
     return {}
+
+
+@require_safe
+@login_required()
+@render_to('users/settings/importer.html')
+def me(request):
+    return {}
+

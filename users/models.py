@@ -45,3 +45,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_superuser
+
+    @property
+    def get_user_color(self):
+        user_name = self.name
+        color = '#' + hex(hash(user_name))[-6:]
+        return color

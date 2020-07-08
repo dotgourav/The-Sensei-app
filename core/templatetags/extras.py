@@ -11,7 +11,7 @@ def random_number():
     return str(2) if not settings.DEBUG else str(randint(1, 10000))
 
 
-@register.inclusion_tag('base/initials_logo.html')
+@register.inclusion_tag('core/base/initials_logo.html')
 def get_initials_user_icon(user, size='20'):
     if user is None:
         return {
@@ -19,11 +19,12 @@ def get_initials_user_icon(user, size='20'):
             'color': 'grey',
             'size': size
         }
-    user_name = user.get_full_name()
-    names = user_name.split(' ')
     initials = ''
-    for name in names:
-        initials += name[0]
+    if user.first_name:
+        initials += user.first_name[0]
+
+    if user.last_name:
+        initials += user.last_name[0]
 
     return {
         'initials': initials.upper(),
