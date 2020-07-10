@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST, require_safe
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 
 from annoying.decorators import ajax_request, render_to
 
@@ -20,7 +21,7 @@ User = get_user_model()
 @render_to('users/login/login.html')
 def signin(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('teacher_directory')
     return {
         'next': request.GET.get('next', '')
     }
@@ -50,7 +51,7 @@ def login_process(request):
 @require_safe
 def signout(request):
     logout(request)
-    return redirect('index')
+    return redirect('teacher_directory')
 
 
 @require_safe
@@ -172,3 +173,68 @@ def import_teachers_process(request):
         return {'success': True, 'errors': errors}
 
 
+@require_safe
+@login_required
+@render_to('users/teacher_directory.html')
+def teacher_directory(request):
+    return {}
+
+
+@csrf_exempt
+@ajax_request
+@login_required
+def teacher_directory_ajax(request):
+    data = request.GET
+    user = request.user
+
+    offset = int(data.get('start', 0))
+    step = int(data.get('length', 25))
+    search = data.get('sSearch', '')
+    sort_col_number = int(data.get('order[0][column]', 1)) - 1
+    sort_col_dir = data.get('order[0][dir]', 'asc')
+    sort_col_dir_sign = '' if sort_col_dir == 'asc' else '-'
+    table_fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'room_number',
+        'subjects'
+    ]
+
+    teachers = User.objects.filter(role=User.TEACHER)
+
+    total_count = teachers.count()
+
+    filtered_count = teachers.count()
+
+    teachers = teachers.order_by(sort_col_dir_sign + table_fields[sort_col_number])
+
+    # Pagination
+    if step == -1:
+        teachers = teachers[offset:]
+    else:
+        teachers = teachers[offset: offset + step]
+
+    transformed_teacher_list = []
+    for teacher in teachers:
+        transformed_teacher_list.append({
+            'profile_picture': {
+                'html_content': render_to_string('core/user_profile_picture.html', {'user': teacher}),
+                'name': teacher.name
+            },
+            'first_name': teacher.first_name,
+            'last_name': teacher.last_name,
+            'email': teacher.email,
+            'phone': teacher.phone,
+            'room_number': teacher.room_number,
+            'subjects': teacher.subjects,
+            'id': teacher.id
+        })
+
+    return {
+        'success': True,
+        'recordsTotal': total_count,
+        'recordsFiltered': filtered_count,
+        'data': transformed_teacher_list
+    }

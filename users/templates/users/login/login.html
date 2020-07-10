@@ -31,11 +31,10 @@
         url: '{% url 'login_process' %}',
         form_id: this.id,
         on_success: function(response) {
-          console.log(response.next !== undefined);
           if (response.next !== undefined) {
             window.location.href = response.next;
           } else {
-            window.location = '{% url 'index' %}';
+            window.location = '{% url 'teacher_directory' %}';
           }
         }
       });

@@ -1,0 +1,11 @@
+{% load extras %}
+<div data-toggle="tooltip" title="{{ user.name }}">
+  {% if user.profile_picture_url %}
+    <img class="rounded-circle m-auto" src="{{ user.profile_picture_url }}"
+         width="35" height="35">
+  {% else %}
+    <div style="width: 35px; height: 35px">
+      {% get_initials_user_icon user %}
+    </div>
+  {% endif %}
+</div>

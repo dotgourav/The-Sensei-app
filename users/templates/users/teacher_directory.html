@@ -1,0 +1,45 @@
+{% extends 'core/base/base_web.html' %}
+{% load static %}
+{% load extras %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/users/teacher-directory.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="projects-list-header d-flex justify-content-between align-items-center p-2">
+    <div class="btn-group">
+      <div>
+        <a class="btn border btn-success" href="{% url 'import_teachers' %}">Add teachers(Bulk)</a>
+      </div>
+    </div>
+    <div class="projects-title">Teacher's Directory</div>
+    <div></div>
+  </div>
+
+  {#  Main content  #}
+  <div>
+    <table class="table table-striped table-bordered js-teachers-table" style="width:100%;">
+      <thead>
+      <tr>
+        <th></th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th style="width:20%">Email</th>
+        <th>Phone</th>
+        <th>Room number</th>
+        <th style="width:30%;">Subjects</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+  <script src="{% static 'js/teacher-directory.js' %}"></script>
+{% endblock %}

@@ -9,7 +9,7 @@
         <!-- Needed for dropdown-menus -->
         <div class="overlay" onclick="toggleOverlay();"></div>
 
-        <a class="ml-1 navbar-brand text-white" {% block home_url %}href="{% url 'index' %}"{% endblock %}>Sensei App</a>
+        <a class="ml-1 navbar-brand text-white" {% block home_url %}href="{% url 'teacher_directory' %}"{% endblock %}>Sensei App</a>
 
         {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
