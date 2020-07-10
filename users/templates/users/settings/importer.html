@@ -14,7 +14,7 @@
             <hr>
             <br>
             <div class="form-group" style="display: flex;">
-              <form id="settings-company-upload-projects" method="POST">{% csrf_token %}
+              <form id="settings-upload-teachers" method="POST">{% csrf_token %}
                 <span>If you wish to upload teachers in bulk, you can use this bulk upload <a href="{% static 'teachers-upload-template.csv' %}">template </a> and upload it here.</span>
                 <div  style='height: 38px; margin-top: 30px'>
                   <input type='file' name='files' onchange='fileChanged(this);'>
@@ -30,31 +30,4 @@
 
 {% block extra_scripts %}
   <script src="{% static 'js/settings.js' %}"></script>
-  <script src="{% static 'js/settings/approval-flows.js' %}"></script>
-  <script src="{% static 'js/projects-import-form.js' %}"></script>
-  <script>
-    $(function () {
-      {% if user.is_company_admin %}
-        initSourcingStepReorderable();
-      {% endif %}
-      $("#field_type").on('change', function (event) {
-        if($(event.target).val() === 'list') {
-          $("#list_values_block").show();
-        } else {
-          $("#list_values_block").hide();
-        }
-      })
-    })
-  </script>
-  <script>
-    // Keep selected tab on page refresh
-    $(document).ready(function() {
-      if (location.hash) {
-        $("a[href='" + location.hash + "']").tab("show");
-      }
-      $(document.body).on("click", "a[data-toggle='tab']", function(event) {
-        location.hash = this.getAttribute("href");
-      });
-    });
-  </script>
 {% endblock %}

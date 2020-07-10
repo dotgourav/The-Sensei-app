@@ -10,6 +10,7 @@ urlpatterns = [
     path('me/', views.me, name='me'),
 
     # Settings
-    path('settings/import-teachers/', views.import_teachers, name='import_teachers')
+    path('settings/import-teachers/', views.import_teachers, name='import_teachers'),
+    path('settings/import-teachers-process/', views.import_teachers_process, name='import_teachers_process')
 ]
 

@@ -3,5 +3,5 @@ def get_filename(instance, filename):
     folder = ''
     class_name = instance.__class__.__name__.lower()
     if class_name == 'user':
-        folder = 'users/'
+        folder = 'user/'
     return f'{folder}{filename}'

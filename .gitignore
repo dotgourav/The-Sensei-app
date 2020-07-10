@@ -1,0 +1,21 @@
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+.idea
+bower_components/
+ssl_certs/
+staticfiles/
+venv/
+.venv/
+celerybeat-schedule*
+.env
+run/
+logs/
+node_components/
