@@ -1,0 +1,57 @@
+{% extends 'core/base/header/without-search-bar.html' %}
+{% load static %}
+{% load extras %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/teacher/details.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid contract-details mb-5">
+    <div class="row standalone-sections mt-lg-5">
+      <div class="contract-details-summary-section contract-details__extracted-clauses" style="width:100%;">
+        <div class="contract-details-summary-section-title">
+          <span>Teacher Details</span>
+        </div>
+        <div class="contract-details__extracted-clause-rows">
+          <div class="row">
+            <div class="col-md-3 my-auto">
+              <div class="form-group" style="margin: auto; border-radius: 50%; border: 1px solid #f3f3f3; width: 120px; height: 120px; background-image: url({% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/profile_placeholder_120x120.svg' %}{% endif %}); background-size: contain; background-position: center;"></div>
+            </div>
+            <div class="col-md-9 contract-details__extracted-clause-rows">
+              <div class="row">
+                <div class="col-6 extracted-clause-rows__label">First name</div>
+                <div class="col-6">{{ teacher.first_name }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6 extracted-clause-rows__label">Last name</div>
+                <div class="col-6">{{ teacher.last_name|default_if_none:'' }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6 extracted-clause-rows__label">Email</div>
+                <div class="col-6">{{ teacher.email|default_if_none:'' }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6 extracted-clause-rows__label">Phone number</div>
+                <div class="col-6">{{ teacher.phone|default_if_none:'NA' }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6 extracted-clause-rows__label">Room number</div>
+                <div class="col-6">{{ teacher.room_number|default_if_none:'NA' }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6 extracted-clause-rows__label">Subjects</div>
+                <div class="col-6">{{ teacher.subjects|default_if_none:'NA' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+  <script src="{% static 'js/contracts/details/contracts.js' %}"></script>
+{% endblock %}

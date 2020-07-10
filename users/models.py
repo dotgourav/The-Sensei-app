@@ -51,3 +51,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         user_name = self.name
         color = '#' + hex(hash(user_name))[-6:]
         return color
+
+    @property
+    def profile_picture_url(self):
+        if self.profile_picture and hasattr(self.profile_picture, 'url'):
+            return self.profile_picture.url
+        else:
+            return False

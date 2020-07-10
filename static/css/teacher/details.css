@@ -1,0 +1,777 @@
+.strapline {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.project-list-card {
+  height: 70px;
+}
+
+.project-list-card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.project-list-card-date {
+  font-size: 0.8rem;
+  color: darkgray;
+  font-weight: 300;
+}
+
+.project-list-card-value {
+  font-size: 1.1rem;
+}
+
+.polygon {
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+}
+
+.project-step-cell:first-child .polygon{
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0% 100%, 0% 0%);
+}
+
+.project-details-container table {
+  height: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.project-steps-container {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  margin: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.project-step-cell {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.project-step-cell a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+
+.project-step-cell span {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  padding: auto 10px;
+}
+
+.project-step-name {
+  display: flex;
+  position: relative;
+  background-color: #f0f0f0;
+  min-height: 50px;
+  color: black;
+}
+
+.project-step-name-active {
+  background-color: #dc6900;
+  color: white;
+}
+
+.project-step-name-closed {
+  background-color: #43C35E;
+  color: white;
+}
+
+.project-step-name > a {
+  margin: auto;
+  width: 80%;
+}
+
+.project-step-name span {
+  padding: 10px 20px;
+}
+
+.project-step-name .project-card-days {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+}
+
+.project-step-data, .project-step-days-spent {
+  font-size: 14px;
+}
+
+.project-step-days-spent {
+  min-height: 25px;
+}
+
+.summary {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-left: 15px;
+}
+
+.project-header-container {
+  background-color: white;
+  padding: 30px;
+}
+
+.project-details-summary-container {
+  padding: 0 30px;
+  /*margin-bottom: 30px;*/
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-details-summary-section {
+  margin-bottom: 15px;
+}
+
+.project-details-summary-section-title {
+  font-weight: 600;
+  font-size: 1em;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*padding: 0 5px;*/
+  height: 40px;
+}
+
+.project-details-summary-section-title > span {
+  vertical-align: center;
+}
+
+.project-details-summary-section-title .btn-edit {
+  padding: 0;
+  background-color: transparent;
+}
+
+.project-details-summary-section-title .btn-save {
+  padding: 2px 5px;
+  display: none;
+}
+
+.project-details-summary-forms {
+  width: 40%;
+  display: inline-block;
+}
+
+.project-details-summary-form {
+  background-color: white;
+  border-radius: 5px;
+  /*padding-bottom: 10px;*/
+}
+
+.project-details-summary-form .input-cell {
+  min-height: 50px;
+  margin: 0 15px;
+  border-bottom: 1px solid #55555533;
+  display: flex;
+  flex-direction: row;
+  /*align-items: center;*/
+  padding: 8px 0 8px 0;
+}
+
+.project-details-summary-form .input-cell-column {
+  min-height: 50px;
+  margin: 0 15px;
+  border-bottom: 1px solid #55555533;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+
+.project-details-summary-form .input-cell:last-child {
+  border-bottom: 0;
+}
+
+.project-details-summary-form .input-cell .label-40 {
+  font-weight: 600;
+  font-size: 1em;
+  color: black;
+  width: 40%;
+  min-width: 40%;
+  margin: 0;
+}
+
+.project-details-summary-form .input-cell .label-100 {
+  font-weight: 600;
+  font-size: 1em;
+  color: black;
+  width: 100%;
+  display: block;
+  margin: 0;
+}
+
+.project-details-summary-form .input-cell > span {
+  /*text-overflow: ellipsis;*/
+  white-space: normal;
+  word-break: break-all;
+  /*overflow: hidden;*/
+  display: inline-block;
+  /*color: darkgray;*/
+}
+
+.project-details-summary-form .input-cell .text-area {
+  padding: 0;
+  color: darkgray;
+  margin-top: 15px;
+  white-space: pre-wrap;
+}
+
+.project-details-summary-form .input-cell textarea {
+  padding: 0;
+  color: black;
+  margin-top: 15px;
+  resize: none;
+  border: 0;
+  width: 100%;
+}
+
+.project-details-summary-form .input-cell textarea:disabled {
+  color: darkgray;
+}
+
+.project-summary-activities {
+  width: 60%;
+  /*display: inline-block;*/
+  overflow-y: scroll;
+  /*height: 0;*/
+  padding-left: 20px;
+}
+
+.project-summary-activities-title {
+  padding-left: 122px;
+}
+
+.project-summary-activity-title {
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.project-summary-activity-section {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.project-summary-activity-section-footer {
+  margin: 0 10px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0px;
+}
+
+.no-activities-text {
+  margin: 15px 10px 15px 118px;
+  display: block;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+
+.project-summary-activity {
+  padding: 15px 0 15px 10px;
+  min-height: 60px;
+  display: flex;
+  color: darkgray;
+}
+
+.project-summary-activity-img-placeholder {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.project-summary-activity-img-placeholder img {
+  width: 50px;
+  height: 50px;
+  border: solid 3px white;
+  border-radius: 50px;
+  background-color: white;
+}
+
+.project-summary-activity-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  margin-left: 30px;
+  margin-right: 10px;
+  padding: 10px 15px;
+  position: relative;
+  max-width: calc(100% - 120px);
+}
+
+.project-summary-activity-content .activity-text {
+  margin-bottom: 15px;
+  word-wrap:break-word;
+  
+}
+
+.project-summary-activity-content .activity-date {
+  /*font-weight: 500;*/
+}
+
+.activity-dash-line {
+  border-left: dashed #a5a5a5 1px;
+  z-index: -1;
+  width: 1px;
+  left: 66px;
+  position: relative;
+  float: left;
+  display: none;
+}
+
+.attachment-input-hidden {
+  z-index: -1;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.attachment-label {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.attachment-label:hover {
+  text-decoration: underline;
+}
+
+.project-summary-activity-content-edit-overlay {
+  padding-top: 7px;
+  padding-right: 7px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+}
+
+.project-summary-activity-content:hover .project-summary-activity-content-edit-overlay {
+  display: block;
+}
+
+.activity-separator {
+  margin: 0 10px 15px 150px;
+}
+
+.no-attachments-text {
+  display: block;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  color: darkgray;
+}
+
+.attachments-container {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.project-step-popup-title {
+  color: white;
+}
+
+
+/**
+ * Contract Details Page
+ */
+.contract-details__header {
+  background-color: white;
+  padding: 35px;
+}
+
+.contract-details__title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.contract-details__status {
+  font-size: 14px;
+  padding: 6px 26px;
+  border-radius: 40px;
+  color: white !important;
+}
+
+.contract-details__options {
+  justify-content: right;
+}
+
+.contract-details__summary-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: black;
+  padding: 15px 0 0 50px;
+}
+
+/**
+ * Extracted clauses section
+ * ===============================
+ */
+.contract-details__extracted-clause-rows {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.contract-details__extracted-clause-rows > .row {
+  margin: 0 15px;
+  min-height: 50px;
+  padding: 14px 0;
+  border-bottom: 1px solid #55555533
+}
+
+.contract-details__extracted-clause-rows > .row:last-child {
+  border: 0;
+}
+
+.contract-details__extracted-clause-rows > .row > .col-6 {
+  margin: 0;
+  padding: 0;
+}
+
+.extracted-clause-rows__label {
+  font-weight: 600;
+  font-size: 1em;
+  color: black;
+  width: 40%;
+  min-width: 40%;
+  margin: 0;
+}
+
+.contract-details-summary-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  /*position: relative;*/
+  /*overflow: hidden;*/
+}
+
+.contract-details-summary-forms {
+  width: 50%;
+  /*display: inline-block;*/
+  padding-right: 20px;
+}
+
+.contract-summary-activities {
+  width: 50%;
+  /*display: inline-block;*/
+  overflow-y: scroll;
+  /*height: 0;*/
+  padding-left: 20px;
+}
+
+.contract-details-summary-section {
+  margin-bottom: 15px;
+}
+
+.contract-details-summary-section-title {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #575757;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.contract-details-summary-section-title .btn-save {
+  padding: 2px 5px;
+  display: none;
+}
+
+.contract-details-summary-form {
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.contract-details-summary-form .input-cell {
+  min-height: 50px;
+  margin: 0 15px;
+  border-bottom: 1px solid #55555533;
+  display: flex;
+  flex-direction: row;
+  /*align-items: center;*/
+  padding: 8px 0 8px 0;
+}
+
+.contract-details-summary-form .input-cell-column {
+  min-height: 50px;
+  margin: 0 15px;
+  border-bottom: 1px solid #55555533;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+
+.contract-details-summary-form .input-cell:last-child {
+  border-bottom: 0;
+}
+
+.contract-details-summary-form .input-cell .label-40 {
+  font-weight: 600;
+  font-size: 1em;
+  color: black;
+  width: 40%;
+  min-width: 40%;
+  margin: 0;
+}
+
+.contract-details-summary-form .input-cell .label-100 {
+  font-weight: 600;
+  font-size: 1em;
+  color: black;
+  width: 100%;
+  display: block;
+  margin: 0;
+}
+
+.contract-details-summary-form .input-cell > span {
+  /*text-overflow: ellipsis;*/
+  white-space: normal;
+  word-break: break-all;
+  /*overflow: hidden;*/
+  display: inline-block;
+  color: #444;
+}
+
+.contract-details-summary-form .input-cell .text-area {
+  padding: 0;
+  color: darkgray;
+  margin-top: 15px;
+  white-space: pre-wrap;
+}
+
+.contract-details-summary-form .input-cell textarea {
+  padding: 0;
+  color: black;
+  margin-top: 15px;
+  resize: none;
+  border: 0;
+  width: 100%;
+}
+
+.contract-details-summary-form .input-cell textarea:disabled {
+  color: darkgray;
+}
+
+.standalone-sections {
+  padding: 0 40px;
+}
+
+.contract-attachments {
+  background-color: white;
+  padding: 0 15px;
+  border-radius: 5px;
+}
+
+.contract-attachment {
+  padding: 15px;
+  border-bottom: 1px solid #55555533;
+}
+
+.contract-attachment:last-child {
+  border-bottom: 0;
+}
+
+.contract-no-attachments {
+  display: block;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  color: darkgray;
+}
+
+/**
+ * Contracts listing page
+ */
+
+/* Create contract popup */
+
+/**
+ * Drag and drop area
+ */
+
+.contract-form__file-input {
+  text-align: center;
+}
+
+.contract-form__icon
+{
+  width: 100%;
+  color: #116eb6;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.contract-form__attachment-file + label:hover strong,
+.contract-form__attachment-file:focus + label strong,
+.contract-form__attachment-file.has-focus + label strong
+{
+  color: #39bfd3;
+}
+
+.contract-form__attachment-file
+{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.contract-form__attachment-file + label
+{
+  max-width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  /*overflow: hidden;*/
+}
+
+.contract-form__file-div.has-advanced-upload {
+  background-color: white;
+  margin: 0 0 1.5rem 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+.contract-form__file-div.has-advanced-upload .contract-form__dragndrop {
+  display: inline;
+}
+
+.contract-form__file-div.is-dragover {
+  background-color: grey;
+}
+
+#contracts-table {
+  margin-top: 0px !important;
+}
+
+.contracts-table thead th{
+  border-top: 1px #b9babb solid;
+  border-bottom: 1px #b9babb solid;
+  background-image: linear-gradient(#fff, #f2f7fa);
+  font-weight: 600;
+}
+
+.contracts-list-page-header {
+  background-color: #f1f2f3;
+}
+
+.change-view-icons {
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  width: 5rem;
+  align-items: center;
+}
+
+.change-view-icons span {
+  cursor: pointer;
+  color: #999;
+}
+
+.change-view-icons__expiry-view {
+  transform: rotate(90deg);
+}
+
+.change-view-icons .active {
+  color: #1072BA;
+}
+
+.contracts-list-table-container {
+  /*background-color: white;*/
+  min-height: calc(100% - 54px);
+  height: calc(100% - 54px);
+}
+
+.contracts-list--meta-data {
+  padding: 6px 26px;
+  border-radius: 40px;
+  background-color: red;
+  color: white !important;
+}
+
+.contracts-list--owner-column {
+  padding: 0.30rem 0.75rem !important;
+}
+
+#filter-form {
+  width: 230px;
+  position: absolute;
+  top: 37px;
+  right: 0;
+  display: none;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  z-index: 2222;
+}
+
+/**
+ * Datatable sort icon override
+ */
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after {
+  display:none !important;
+}
+
+table.dataTable thead .sorting_desc::after {
+  display:none !important;
+}
+
+table.dataTable thead .sorting::before,
+table.dataTable thead .sorting_asc::before {
+  display:none !important;
+}
+
+table.dataTable thead .sorting_desc::before {
+  display:none !important;
+}
+
+table.dataTable thead .sorting {
+  background-image: url(/static/images/sort_both.png), linear-gradient(#fff, #f2f7fa) !important;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+table.dataTable thead .sorting_asc {
+  background-image: url(/static/images/sort_asc.png), linear-gradient(#fff, #f2f7fa) !important;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+table.dataTable thead .sorting_desc {
+  background-image: url(/static/images/sort_desc.png), linear-gradient(#fff, #f2f7fa) !important;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+/**
+ * Globals
+ * ==========
+ */
+
+.fa-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

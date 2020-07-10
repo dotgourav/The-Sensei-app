@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.teacher_directory, name='teacher_directory'),
+    path('teacher/<int:teacher_id>/', views.teacher_details, name='teacher_details'),
     path('ajax/teacher-directory/', views.teacher_directory_ajax, name='teacher_directory_ajax'),
     path('login/', views.signin, name='login'),
     path('ajax/login_process/', views.login_process, name='login_process'),

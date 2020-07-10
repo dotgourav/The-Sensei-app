@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.template.loader import render_to_string
 
 from annoying.decorators import ajax_request, render_to
@@ -175,7 +175,7 @@ def import_teachers_process(request):
 
 @require_safe
 @login_required
-@render_to('users/teacher_directory.html')
+@render_to('users/teacher/list.html')
 def teacher_directory(request):
     return {}
 
@@ -237,4 +237,15 @@ def teacher_directory_ajax(request):
         'recordsTotal': total_count,
         'recordsFiltered': filtered_count,
         'data': transformed_teacher_list
+    }
+
+
+@require_safe
+@login_required
+@render_to('users/teacher/details.html')
+def teacher_details(request, teacher_id):
+    teacher = get_object_or_404(User, pk=teacher_id)
+
+    return {
+        'teacher': teacher
     }
