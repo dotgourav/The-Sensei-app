@@ -1,0 +1,87 @@
+{% extends 'users/settings/base.html' %}
+{% load static %}
+{% load extras %}
+
+{% block settings_content %}
+
+  <h4>Profile</h4>
+  <hr>
+
+  <form autocomplete="off" id="settings-me-form" method="POST" action="." onsubmit="return false;">{% csrf_token %}
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group" style="margin-left: 0; margin-right: auto; border-radius: 50%;width: 120px; height: 120px; background-image: url({% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/profile_placeholder_120x120.svg' %}{% endif %}); background-size: contain; background-position: center;"></div>
+        <div class="input-group">
+          <input type="file" name="profile_picture" class="form-control" style="height: auto !important;">
+          {% if user.profile_picture %}
+            <div class="input-group-append cursor-pointer">
+              <span class="input-group-text fa fa-trash text-danger js-profile-picture-delete" style="padding-top:10px;"></span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-7">
+        <div class="row form-group">
+          <div class="col-4">
+            <label for="name">First Name</label>
+          </div>
+          <div class="col-8">
+            <input id="first_name" type="text" name="first_name" placeholder="First Name" class="form-control" value="{{ user.first_name }}">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-4">
+            <label for="name">Last Name</label>
+          </div>
+          <div class="col-8">
+            <input id="last_name" type="text" name="last_name" placeholder="Last Name" class="form-control" value="{{ user.last_name }}">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-4">
+            <label for="email">Email</label>
+          </div>
+          <div class="col-8">
+            <input id="email" type="text" name="email" placeholder="Email" class="form-control" value="{{ user.email }}">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-4">
+            <label for="phone">Phone</label>
+          </div>
+          <div class="col-8">
+            <input id="phone" type="text" name="phone" placeholder="Phone" class="form-control" value="{{ user.phone }}">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-4">
+            <label for="room_number">Room number</label>
+          </div>
+          <div class="col-8">
+            <input id="room_number" type="text" name="room_number" placeholder="Room number" class="form-control" value="{{ user.room_number }}">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-4">
+            <label for="subjects">Subjects</label>
+          </div>
+          <div class="col-8">
+            <input id="subjects" type="text" name="subjects" placeholder="Subjects taught" class="form-control" value="{{ user.subjects }}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+          </div>
+          <div class="col-4">
+            <input type="submit" class="btn btn-success" value="Save" onclick="personalSettingsProcess();">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{% static 'js/settings.js' %}"></script>
+{% endblock %}

@@ -1,6 +1,7 @@
 import pandas as pd
 
-from django.db import IntegrityError, transaction
+from django.db import IntegrityError
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,7 @@ from django.shortcuts import redirect
 
 from annoying.decorators import ajax_request, render_to
 
-from .forms import LoginForm
+from .forms import LoginForm, MeSettingsForm
 from .services import validate_teachers_data
 from schools.models import School
 
@@ -53,10 +54,41 @@ def signout(request):
 
 
 @require_safe
-@login_required()
-@render_to('users/settings/importer.html')
+@login_required(redirect_field_name=None)
+@render_to('users/settings/me.html')
 def me(request):
     return {}
+
+
+@require_POST
+@ajax_request
+@login_required
+def me_settings_process(request):
+    user = request.user
+    data = request.POST
+    files = request.FILES
+
+    form = MeSettingsForm(data=data, instance=user, files=files)
+    if form.is_valid():
+        form.save()
+        return {'success': True}
+    else:
+        return {'success': False, 'errors': form.errors}
+
+
+@csrf_exempt
+@require_POST
+@ajax_request
+@login_required
+def profile_picture_delete(request):
+    user = request.user
+
+    if user.profile_picture and user.profile_picture.url:
+        user.profile_picture.delete()
+
+    return {
+        'success': True
+    }
 
 
 @require_safe
