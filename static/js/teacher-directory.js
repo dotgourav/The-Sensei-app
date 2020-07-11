@@ -3,7 +3,15 @@ const teacherDirectory = (function ($) {
 
 
   // Cache DOM
+  let activeFilters = null;
   const $teachersTable = $('.js-teachers-table');
+  const $filterDropdownButton = $('.js-filter-dropdown');
+  const $filterForm = $('.js-filter-form');
+  const $applyFiltersButton = $('.js-apply-filters');
+
+  // Bind events
+  $filterDropdownButton.on('click', __toggleFilterDropdown);
+  $applyFiltersButton.on('click', __applyFilters);
 
   teachersTable();
 
@@ -22,11 +30,15 @@ const teacherDirectory = (function ($) {
       'dom': 'tp',  // Table, pagination
       ajax: {
         url: '/ajax/teacher-directory/',
+        'data': function (d) {
+          d.selectedFilters = activeFilters;
+        },
         beforeSend: function () {
           showOverlaySpinner('body');
         },
         complete: function () {
           hideOverlaySpinner();
+          initChosen();
         }
       },
       aoColumns: [
@@ -60,4 +72,31 @@ const teacherDirectory = (function ($) {
     });
   }
 
+  function __toggleFilterDropdown () {
+    $filterForm.toggle();
+  }
+
+  function __applyFilters () {
+    let selectedFilters = $filterForm.serialize();
+    setActiveFilters(selectedFilters);
+    __toggleFilterDropdown();
+    _reloadTeacherListTable();
+  }
+
+  function setActiveFilters (selectedFilters) {
+    activeFilters = selectedFilters;
+    if (selectedFilters && Object.keys(selectedFilters).length > 0) {
+      $filterDropdownButton.addClass('btn-success option-selected')
+    } else {
+      $filterDropdownButton.removeClass('btn-success option-selected')
+    }
+  }
+
+  function getActiveFilters () {
+    return activeFilters;
+  }
+
+  function _reloadTeacherListTable () {
+    $teachersTable.DataTable().ajax.reload();
+  }
 }(jQuery));

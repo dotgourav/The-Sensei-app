@@ -1,0 +1,10 @@
+#filter-form {
+  width: 230px;
+  position: absolute;
+  top: 37px;
+  right: 0;
+  display: none;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  z-index: 2;
+}

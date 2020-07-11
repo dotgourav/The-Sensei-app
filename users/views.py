@@ -1,6 +1,10 @@
+from functools import reduce
+import operator
 import pandas as pd
+from urllib.parse import urlsplit, parse_qs
 
 from django.db import IntegrityError
+from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
 from django.contrib.auth import authenticate, login, logout, get_user_model
@@ -177,7 +181,16 @@ def import_teachers_process(request):
 @login_required
 @render_to('users/teacher/list.html')
 def teacher_directory(request):
-    return {}
+    teachers = User.objects.filter(role=User.TEACHER).exclude(Q(last_name='') | Q(subjects=''))
+    last_names = list(set(teachers.values_list('last_name', flat=True)))
+    subjects = set()
+    for teacher in teachers:
+        subject_list = teacher.subjects.split(',')
+        subjects.update(map(lambda subject: subject.strip(), subject_list))
+    return {
+        'last_names': last_names,
+        'subjects': list(subjects)
+    }
 
 
 @csrf_exempt
@@ -193,6 +206,10 @@ def teacher_directory_ajax(request):
     sort_col_number = int(data.get('order[0][column]', 1)) - 1
     sort_col_dir = data.get('order[0][dir]', 'asc')
     sort_col_dir_sign = '' if sort_col_dir == 'asc' else '-'
+
+    selected_filters_string = "?{}".format(data.get('selectedFilters', ''))
+    selected_filters = parse_qs(urlsplit(selected_filters_string).query)
+
     table_fields = [
         'first_name',
         'last_name',
@@ -205,6 +222,17 @@ def teacher_directory_ajax(request):
     teachers = User.objects.filter(role=User.TEACHER)
 
     total_count = teachers.count()
+
+    last_name_filters = selected_filters.get('last_name', [])
+    subjects_filters = selected_filters.get('subjects', [])
+
+    if last_name_filters:
+        query = reduce(operator.or_, [Q(last_name__istartswith=letter) for letter in last_name_filters])
+        teachers = teachers.filter(query)
+
+    if subjects_filters:
+        query = reduce(operator.or_, [Q(subjects__icontains=subject) for subject in subjects_filters])
+        teachers = teachers.filter(query)
 
     filtered_count = teachers.count()
 

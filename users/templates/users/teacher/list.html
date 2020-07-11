@@ -3,7 +3,7 @@
 {% load extras %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/users/teacher-directory.css' %}">
+  <link rel="stylesheet" href="{% static 'css/teacher/list.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,38 @@
       </div>
     </div>
     <div class="projects-title">Teacher's Directory</div>
-    <div></div>
+    <div class="btn-group">
+      <button
+          type="button"
+          id="filter-dropdown"
+          style="border-radius: .25rem;"
+          class="btn border dropdown-toggle js-filter-dropdown">
+        Filter
+      </button>
+      <form id="filter-form" class="pt-3 pb-3 j-dropdown js-filter-form" method="get" onsubmit="return false;">
+        <div class="container">
+          <div class="form-group">
+            <label for="last_name">Teacher last name</label>
+            <select name="last_name" multiple class="form-control chosen-select-all"
+                    title="Teacher last name" data-placeholder="">
+              {% for last_name in last_names %}
+                <option value="{{ last_name.0|upper }}">{{ last_name.0|upper }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="subjects">Subject</label>
+            <select name="subjects" multiple class="form-control chosen-select-all" title="Subjects"
+                    data-placeholder="">
+              {% for subject in subjects %}
+                <option value="{{ subject }}">{{ subject }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input type="button" style="background-color: #1072BA !important;" class="btn bg-app-blue text-white form-control js-apply-filters" value="Apply Filters">
+        </div>
+      </form>
+    </div>
   </div>
 
   {#  Main content  #}
